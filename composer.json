@@ -1,0 +1,20 @@
+{
+  "name": "navarr/IRCServer",
+  "description": "IRC Server",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Navarr Barnier",
+      "email": "me@navarr.me"
+    }
+  ],
+  "require": {
+    "navarr/sockets": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Navarr\\IRC": "src/"
+    }
+  }
+}

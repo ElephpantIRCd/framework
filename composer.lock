@@ -1,0 +1,62 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "05c15baa9e30c77dfbe2799859611c49",
+    "packages": [
+        {
+            "name": "navarr/sockets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/navarr/Sockets.git",
+                "reference": "218049ae1969b47f5235055fe5c35fd87ac9187f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/navarr/Sockets/zipball/218049ae1969b47f5235055fe5c35fd87ac9187f",
+                "reference": "218049ae1969b47f5235055fe5c35fd87ac9187f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "symfony/class-loader": "2.2.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Navarr\\Socket\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Navarr Barnier",
+                    "email": "me@navarr.me",
+                    "homepage": "http://tech.navarr.me/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Sockets in PHP",
+            "time": "2015-02-27 16:52:21"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "navarr/sockets": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
