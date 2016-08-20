@@ -1,6 +1,6 @@
 <?php
 
-namespace Navarr\IRC;
+namespace ElephpantIRCd;
 
 use Navarr\Socket\Socket;
 
@@ -13,5 +13,14 @@ class Connection
     {
         $this->server = $server;
         $this->socket = $client;
+    }
+
+    /**
+     * @param string $buffer
+     * @return int Bytes sent
+     */
+    public function send($buffer)
+    {
+        return $this->socket->send($buffer);
     }
 }

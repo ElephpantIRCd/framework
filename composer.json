@@ -1,8 +1,8 @@
 {
-  "name": "navarr/IRCServer",
-  "description": "IRC Server",
+  "name": "elephpantircd/irc-server",
+  "description": "PHP IRC Daemon",
   "minimum-stability": "dev",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Navarr Barnier",
@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Navarr\\IRC": "src/"
+      "ElephpantIRCd\\": "src/"
     }
   }
 }
