@@ -1,6 +1,6 @@
 {
-  "name": "elephpantircd/irc-server",
-  "description": "PHP IRC Daemon",
+  "name": "elephpantircd/framework",
+  "description": "PHP IRC Daemon Framework",
   "minimum-stability": "dev",
   "license": "MIT",
   "authors": [
