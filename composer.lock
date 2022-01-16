@@ -1,33 +1,36 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "5a4288001337d63df2df00ee05f0d223",
-    "content-hash": "35b7c042584e0d484a6496e255206058",
+    "content-hash": "f49a3a02fac92dea9fa4326a82bd3bbf",
     "packages": [
         {
             "name": "navarr/sockets",
-            "version": "dev-master",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/navarr/Sockets.git",
-                "reference": "f33eb151e87ceeeb9db9ae9bd949d8861a95076e"
+                "reference": "654f35b0851b84c7b22ec02e463b914121692564"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/navarr/Sockets/zipball/f33eb151e87ceeeb9db9ae9bd949d8861a95076e",
-                "reference": "f33eb151e87ceeeb9db9ae9bd949d8861a95076e",
+                "url": "https://api.github.com/repos/navarr/Sockets/zipball/654f35b0851b84c7b22ec02e463b914121692564",
+                "reference": "654f35b0851b84c7b22ec02e463b914121692564",
                 "shasum": ""
             },
             "require": {
                 "ext-sockets": "*",
-                "php": ">=5.4"
+                "php": "^8"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*",
-                "symfony/class-loader": "2.2.x-dev"
+                "infection/infection": "^0.26",
+                "jetbrains/phpstorm-attributes": "^1",
+                "phpstan/phpstan": "^1",
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.6"
             },
             "type": "library",
             "autoload": {
@@ -48,17 +51,28 @@
                 }
             ],
             "description": "Sockets in PHP",
-            "time": "2016-04-22 15:51:25"
+            "support": {
+                "issues": "https://github.com/navarr/Sockets/issues",
+                "source": "https://github.com/navarr/Sockets/tree/v0.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/navarr",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-01-16T19:25:30+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "navarr/sockets": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": []
+    "platform": {
+        "php": ">=7.0"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
 }

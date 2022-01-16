@@ -1,26 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ElephpantIRCd;
 
+use Navarr\Socket\Exception\SocketException;
 use Navarr\Socket\Server as SocketServer;
 use Navarr\Socket\Socket;
 
 class Server extends SocketServer
 {
-    protected $clientMap;
-    protected $name;
+    public const DEFAULT_PORT = 6667;
+    public const DEFAULT_BIND = '0.0.0.0';
+
+    protected array $clientMap = [];
 
     /**
      * Server constructor.
      *
      * @param string $name How the IRC server identifies itself to clients
-     * @param int    $port Port to listen on
+     * @param int $port Port to listen on
      * @param string $bind IP Address to bind to - 0.0.0.0 listens on all IPs
+     * @throws SocketException
      */
-    public function __construct($name, $port = 6667, $bind = '0.0.0.0')
+    public function __construct(protected string $name, int $port = self::DEFAULT_PORT, $bind = self::DEFAULT_BIND)
     {
         parent::__construct($bind, $port);
-        $this->name = $name;
 
         $this->addHook(SocketServer::HOOK_DISCONNECT, [$this, 'disconnectHook']);
 
@@ -29,12 +34,8 @@ class Server extends SocketServer
 
     /**
      * Return a Connection instance from a Socket
-     *
-     * @param Socket $client
-     *
-     * @return Connection
      */
-    protected function getConnection(Socket $client)
+    protected function getConnection(Socket $client): Connection
     {
         $ident = (string)$client;
         if (!isset($this->clientMap[$ident])) {
@@ -45,12 +46,8 @@ class Server extends SocketServer
 
     /**
      * Cleanup the Client Map on a client's disconnect
-     *
-     * @param Server      $server
-     * @param Connection  $client
-     * @param string|null $message
      */
-    protected function disconnectHook(Server $server, Connection $client, string $message = null)
+    protected function disconnectHook(Server $server, Connection $client)
     {
         unset($this->clientMap[$client->getIdentifier()]);
     }
@@ -60,11 +57,11 @@ class Server extends SocketServer
      *
      * @param string $command Hook to listen for (e.g. HOOK_CONNECT, HOOK_INPUT, HOOK_DISCONNECT, HOOK_TIMEOUT)
      * @param Socket $client
-     * @param string $input   Message Sent along with the Trigger
+     * @param string|null $input Message Sent along with the Trigger
      *
-     * @return bool Whether or not to continue running the server (true: continue, false: shutdown)
+     * @return bool Whether to continue running the server (true: continue, false: shutdown)
      */
-    protected function triggerHooks($command, Socket $client, $input = null)
+    protected function triggerHooks(string $command, Socket $client, string $input = null): bool
     {
         if (isset($this->hooks[$command])) {
             foreach ($this->hooks[$command] as $callable) {

@@ -1,5 +1,11 @@
 <?php
+
+declare(strict_types=1);
+
 namespace ElephpantIRCd;
+
+use InvalidArgumentException;
+use RuntimeException;
 
 class PluginRegistrar
 {
@@ -7,28 +13,30 @@ class PluginRegistrar
     const ERRNO_ALREADY_ATTACHED = 2;
 
     /** @var bool Whether or not the plugins have been attached to the server */
-    private static $attached = false;
+    private static bool $attached = false;
 
-    /** @var string[] Array of plugin classes */
-    private static $plugins = [];
+    /** @var iterable<string> Array of plugin classes */
+    private static array $plugins = [];
 
     /** @var Server ElephpantIRCd server */
-    private static $server;
+    private static Server $server;
 
     /**
      * Register a provided class name as a ElephpantIRCd Plugin.
      *
      * Such a class will be loaded at ElephpantIRCd start
      *
-     * @param string $pluginClass
-     *
-     * @throws \InvalidArgumentException
-     * @return bool
+     * @param class-string $pluginClass
+     * @return bool Success
+     * @throws InvalidArgumentException
      */
-    public static function register(string $pluginClass) : bool
+    public static function register(string $pluginClass): bool
     {
         if (!is_subclass_of($pluginClass, PluginInterface::class)) {
-            throw new \InvalidArgumentException('Plugin provided must implement \ElephpantIRCd\PluginInterface', static::ERRNO_BAD_PLUGIN);
+            throw new InvalidArgumentException(
+                'Plugin provided must implement ' . PluginInterface::class,
+                static::ERRNO_BAD_PLUGIN
+            );
         }
         if (!in_array($pluginClass, static::$plugins)) {
             static::$plugins[] = $pluginClass;
@@ -45,14 +53,14 @@ class PluginRegistrar
      *
      * @param Server $server
      */
-    public static function attachServer(Server $server)
+    public static function attachServer(Server $server): void
     {
         if (static::$attached) {
-            throw new \RuntimeException('Server has already been attached', static::ERRNO_ALREADY_ATTACHED);
+            throw new RuntimeException('Server has already been attached', static::ERRNO_ALREADY_ATTACHED);
         }
         static::$attached = true;
         static::$server = $server;
-        foreach(static::$plugins as $class) {
+        foreach (static::$plugins as $class) {
             static::registerPlugin($class, $server);
         }
     }

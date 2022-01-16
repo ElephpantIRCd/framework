@@ -10,8 +10,8 @@
     }
   ],
   "require": {
-    "php": ">=7.0",
-    "navarr/sockets": "dev-master"
+    "php": "^8",
+    "navarr/sockets": "^0.3.0"
   },
   "autoload": {
     "psr-4": {

@@ -6,20 +6,15 @@ use Navarr\Socket\Socket;
 
 class Connection
 {
-    private $server;
-    private $socket;
+    private array $data = [];
 
-    private $data;
-
-    public function __construct(Server $server, Socket $client)
+    public function __construct(private Server $server, private Socket $client)
     {
-        $this->server = $server;
-        $this->socket = $client;
     }
 
     public function getIdentifier()
     {
-        return (string)$this->socket;
+        return (string)$this->client;
     }
 
     /**
@@ -28,7 +23,7 @@ class Connection
      */
     public function send($buffer)
     {
-        return $this->socket->send($buffer);
+        return $this->client->send($buffer);
     }
 
     public function getData($key)
